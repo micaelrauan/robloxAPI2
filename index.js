@@ -6,7 +6,7 @@ app.use(express.json());
 
 const WEBHOOK = process.env.DISCORD_WEBHOOK;
 
-app.get("/mensagem", async (req, res) => {
+app.post("/mensagem", async (req, res) => {
   const { jogador, mensagem } = req.body;
 
   if (typeof jogador !== "string" || typeof mensagem !== "string") {
