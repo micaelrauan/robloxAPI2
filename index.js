@@ -15,7 +15,28 @@ app.post("/mensagem", async (req, res) => {
 
   try {
     await axios.post(WEBHOOK, {
-      content: `Mensagem enviada por ${jogador}: ${mensagem}`,
+      embeds: [
+        {
+          title: "📩 Nova mensagem do Roblox",
+          color: 0x00ff99,
+          fields: [
+            {
+              name: "👤 Jogador",
+              value: jogador,
+              inline: true,
+            },
+            {
+              name: "💬 Mensagem",
+              value: mensagem,
+              inline: false,
+            },
+          ],
+          footer: {
+            text: "Sistema Roblox → Discord",
+          },
+          timestamp: new Date(),
+        },
+      ],
     });
 
     res.json({ status: "Mensagem enviada com sucesso" });
